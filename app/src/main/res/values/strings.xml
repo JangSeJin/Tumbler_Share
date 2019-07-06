@@ -1,3 +1,10 @@
 <resources>
+
     <string name="app_name">TumblerShare</string>
+
+    <!-- 네이버 지도 client id -->
+    <string name="naver_map_client_id">3ekn4k2noj</string>
+
+    <string name="common_meter">%dm</string>
+
 </resources>
