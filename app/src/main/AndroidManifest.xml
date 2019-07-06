@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.hour24.tumblershare.page.main.MainActivity">
+        <activity
+            android:name="com.hour24.tumblershare.page.intro.IntroActivity"
+            android:theme="@style/IntroTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +27,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".page.main.MainActivity" />
         <activity android:name=".page.near.activity.NearShopActivity" />
+        <activity android:name=".page.notification.NotificationActivity" />
 
         <!-- 네이버 지도 -->
         <meta-data

@@ -1,12 +1,11 @@
 package com.hour24.tumblershare.page.near.activity
 
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.viewpager.widget.ViewPager
 import com.hour24.tumblershare.R
 import com.hour24.tumblershare.databinding.NearShopActivityBinding
 import com.hour24.tumblershare.page.near.viewmodel.NearShopViewModel
@@ -15,6 +14,7 @@ import com.hour24.with_v2.adapter.GenericViewPagerAdapter
 import com.hour24.with_v2.view.fragment.NearShopBaseFragment
 import com.hour24.tumblershare.page.near.fragment.NearShopListFragment
 import com.hour24.with_v2.view.fragment.NearShopMapFragment
+import kotlinx.android.synthetic.main.near_shop_activity.*
 
 /**
  * 내 주변 매장
@@ -58,17 +58,23 @@ class NearShopActivity : AppCompatActivity() {
         }
     }
 
-
     /**
      * Layout 초기화
      *
      */
     private fun initLayout() {
-        // ViewPager
-        mBinding.vpShop.adapter = GenericViewPagerAdapter(supportFragmentManager).apply {
-            addItem(NearShopListFragment())
-            addItem(NearShopMapFragment())
+
+        cb_list.isChecked = true
+        cb_map.isChecked = false
+
+        runOnUiThread {
+            // ViewPager
+            mBinding.vpShop.adapter = GenericViewPagerAdapter(supportFragmentManager).apply {
+                addItem(NearShopListFragment())
+                addItem(NearShopMapFragment())
+            }
         }
+
     }
 
     /**
@@ -76,29 +82,35 @@ class NearShopActivity : AppCompatActivity() {
      */
     private fun initEventListener() {
 
+        mBinding.vpShop.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                if (position == 0) {
+                    mBinding.cbList.isChecked = true
+                    mBinding.cbMap.isChecked = false
+                } else {
+                    mBinding.cbList.isChecked = false
+                    mBinding.cbMap.isChecked = true
+                }
+            }
+
+        })
+
     }
 
     private fun getLocation() {
-
-        val client = LocationSer
-
-        val client = LocationServices.getFusedLocationProviderClient(this@NearShopActivity)
-        client.getLastLocation()
-            .addOnCompleteListener(mActivity, object : OnCompleteListener<Location>() {
-                fun onComplete(@NonNull task: Task<Location>) {
-                    if (task.isSuccessful() && task.getResult() != null) {
-//                        mActivity.runOnUiThread(Runnable {
-//                            try {
-//                                val loc = task.getResult()
-//                                mWebView.loadUrl("javascript:" + callBack + "(" + loc.getLongitude() + ", " + loc.getLatitude() + ");")
-//                            } catch (e: Exception) {
-//                                e.printStackTrace()
-//                            }
-//                        })
-                    }
-                }
-            })
-        mViewModel.getShopList()
+        mViewModel.getShopList(37.574686, 126.9768213)
     }
 
 }

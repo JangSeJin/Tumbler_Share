@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.hour24.tumblershare.model.ShopModel
 import com.hour24.tumblershare.retrofit.ITumblerService
 import com.hour24.tumblershare.utils.Logger
-import com.hour24.with_v2.consts.HostConst
+import com.hour24.tumblershare.consts.HostConst
 import com.hour24.with_v2.retrofit.RetrofitRequest
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -25,10 +25,10 @@ class NearShopViewModel : ViewModel() {
     /**
      * 데이터 통신 후 list에 반영
      */
-    fun getShopList() {
+    fun getShopList(lat: Double, lon: Double) {
 
         val service = RetrofitRequest.createService(ITumblerService::class.java, HostConst.domain)
-        service.reqShopList()
+        service.reqShopList(lat, lon)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

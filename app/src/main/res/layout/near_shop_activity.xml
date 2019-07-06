@@ -9,31 +9,64 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ffffff"
         android:orientation="vertical">
 
-        <!--<com.google.android.material.tabs.TabLayout-->
-            <!--android:id="@+id/tl_shop"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <!--<com.google.android.material.tabs.TabItem-->
-                <!--android:id="@+id/ti_list"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/shop_tab_list" />-->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logo" />
+        </LinearLayout>
 
-            <!--<com.google.android.material.tabs.TabItem-->
-                <!--android:id="@+id/ti_map"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/shop_tab_list" />-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="30dp"
+            android:text="주변매장"
+            android:textColor="#414141"
+            android:textSize="18sp" />
 
-        <!--</com.google.android.material.tabs.TabLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:layout_marginRight="70dp"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_list"
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:background="@drawable/selector_on_off"
+                android:button="@null"
+                android:checked="true"
+                tools:checked="true" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_map"
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:layout_marginLeft="11dp"
+                android:background="@drawable/selector_on_off"
+                android:button="@null"
+                android:checked="false" />
+
+        </LinearLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_shop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="30dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

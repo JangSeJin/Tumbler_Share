@@ -119,6 +119,7 @@ class NearShopListFragment : NearShopBaseFragment() {
     }
 
     override fun setShopList(list: ArrayList<ShopModel>) {
+        mBinding.pbList.visibility = View.GONE
         mViewModel.mList.postValue(list)
     }
 }

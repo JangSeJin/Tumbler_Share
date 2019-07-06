@@ -9,13 +9,11 @@ import androidx.databinding.DataBindingUtil
 import com.hour24.tumblershare.R
 import com.hour24.tumblershare.databinding.NearShopMapFragmentBinding
 import com.hour24.tumblershare.model.ShopModel
+import com.hour24.tumblershare.utils.Logger
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.LocationTrackingMode
-import com.naver.maps.map.MapFragment
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
-import com.naver.maps.map.overlay.InfoWindow
+import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
+import kotlinx.android.synthetic.main.near_shop_map_fragment.*
 import java.lang.Exception
 
 /**
@@ -31,6 +29,7 @@ class NearShopMapFragment : NearShopBaseFragment(), OnMapReadyCallback {
     private lateinit var mBinding: NearShopMapFragmentBinding
 
     private var mList: ArrayList<ShopModel> = ArrayList()
+    private var mMap: NaverMap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,16 +51,15 @@ class NearShopMapFragment : NearShopBaseFragment(), OnMapReadyCallback {
 
     }
 
-
     /**
      * 레이아웃 초기화
      */
     private fun initLayout() {
 
-        val fm = activity!!.supportFragmentManager
+        val fm = childFragmentManager
         val mapFragment = fm.findFragmentById(R.id.map_view) as MapFragment?
             ?: MapFragment.newInstance().also {
-                fm.beginTransaction().add(R.id.map_view, it).commit()
+                fm.beginTransaction().add(R.id.map_view, it).commitAllowingStateLoss()
             }
 
         mapFragment.getMapAsync(this)
@@ -77,6 +75,8 @@ class NearShopMapFragment : NearShopBaseFragment(), OnMapReadyCallback {
             clear()
             addAll(list)
         }
+//        setMapUi()
+
     }
 
     /**
@@ -86,15 +86,32 @@ class NearShopMapFragment : NearShopBaseFragment(), OnMapReadyCallback {
      */
     @UiThread
     override fun onMapReady(map: NaverMap) {
+        Logger.e(TAG, "onMapReady")
+        mMap = map
+//        setMapUi()
+    }
 
-        map.locationTrackingMode = LocationTrackingMode.Follow
 
-        val uiSettings = map.uiSettings
+    /**
+     * 지도 UI
+     */
+    private fun setMapUi() {
+
+        if (mList.isEmpty() || mMap == null) {
+            return
+        }
+
+        mMap!!.locationTrackingMode = LocationTrackingMode.Follow
+
+        val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.574686, 126.9768213))
+        mMap!!.moveCamera(cameraUpdate)
+
+        val uiSettings = mMap!!.uiSettings
         uiSettings.isLocationButtonEnabled = true
 
         mList.forEach {
             try {
-                setMarker(map, it)
+                setMarker(mMap!!, it)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

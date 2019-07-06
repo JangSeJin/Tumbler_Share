@@ -1,7 +1,7 @@
-package com.hour24.with_v2.consts
+package com.hour24.tumblershare.consts
 
 object HostConst {
 
-    val domain: String = "http://192.168.0.43:8000"
+    val domain: String = "http://192.168.0.24:8000"
 
 }
