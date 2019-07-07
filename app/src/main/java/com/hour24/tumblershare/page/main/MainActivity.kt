@@ -7,6 +7,7 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.hour24.tumblershare.R
+import com.hour24.tumblershare.page.coupon.CouponActivity
 import com.hour24.tumblershare.page.near.activity.NearShopActivity
 import com.hour24.tumblershare.page.notification.NotificationActivity
 import kotlinx.android.synthetic.main.main_activity.*
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity() {
 
         rl_notification.setOnClickListener {
             val intent = Intent(this@MainActivity, NotificationActivity::class.java)
+            startActivity(intent)
+        }
+
+        iv_coupon.setOnClickListener {
+            val intent = Intent(this@MainActivity, CouponActivity::class.java)
             startActivity(intent)
         }
 

@@ -46,6 +46,15 @@ android {
         cleanedAnnotations
         compile.exclude group: 'org.jetbrains', module: 'annotations'
     }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a'
+            universalApk true
+        }
+    }
 }
 
 dependencies {

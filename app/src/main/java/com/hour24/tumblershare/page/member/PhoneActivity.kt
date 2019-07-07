@@ -1,4 +1,4 @@
-package com.hour24.tumblershare.page.intro
+package com.hour24.tumblershare.page.member
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,22 +6,20 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.hour24.tumblershare.R
 import com.hour24.tumblershare.page.main.MainActivity
-import com.hour24.tumblershare.page.member.PhoneActivity
+import kotlinx.android.synthetic.main.phone_activity.*
 
 
-class IntroActivity : AppCompatActivity() {
+class PhoneActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.intro_activity)
+        setContentView(R.layout.phone_activity)
 
-        Handler().postDelayed({
-
-            val intent = Intent(this@IntroActivity, PhoneActivity::class.java)
+        bt_confirm.setOnClickListener {
+            val intent = Intent(this@PhoneActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
-
-        }, 1500)
+        }
 
     }
 }
