@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.hour24.tumblershare.R
 import com.hour24.tumblershare.page.near.activity.NearShopActivity
+import com.hour24.tumblershare.page.notification.NotificationActivity
 import kotlinx.android.synthetic.main.main_activity.*
 
 
@@ -27,10 +28,13 @@ class MainActivity : AppCompatActivity() {
             dialog.show()
         }
 
+        rl_notification.setOnClickListener {
+            val intent = Intent(this@MainActivity, NotificationActivity::class.java)
+            startActivity(intent)
+        }
+
         runOnUiThread {
-            setCountUp(tv_used, 4234)
-            setCountUp(tv_using, 3202)
-            setCountUp(tv_delayed, 12)
+            setCountUp(tv_total, 16996)
         }
 
         runOnUiThread {

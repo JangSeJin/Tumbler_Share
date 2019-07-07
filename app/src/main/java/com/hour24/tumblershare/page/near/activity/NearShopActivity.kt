@@ -75,6 +75,10 @@ class NearShopActivity : AppCompatActivity() {
             }
         }
 
+        rl_back.setOnClickListener {
+            finish()
+        }
+
     }
 
     /**
