@@ -3,6 +3,7 @@ package com.hour24.tumblershare.page.main
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             wave_view.addDefaultWaves(2, 1)
             wave_view.startAnimation()
         }
+
     }
 
     override fun onResume() {

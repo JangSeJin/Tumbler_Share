@@ -75,7 +75,7 @@ class NearShopMapFragment : NearShopBaseFragment(), OnMapReadyCallback {
             clear()
             addAll(list)
         }
-//        setMapUi()
+        setMapUi()
 
     }
 
@@ -88,7 +88,7 @@ class NearShopMapFragment : NearShopBaseFragment(), OnMapReadyCallback {
     override fun onMapReady(map: NaverMap) {
         Logger.e(TAG, "onMapReady")
         mMap = map
-//        setMapUi()
+        setMapUi()
     }
 
 
